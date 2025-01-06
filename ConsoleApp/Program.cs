@@ -10,11 +10,23 @@ namespace ConsoleApp {
 				List<List<TicTacToe.PlayerToken>> board = game.GetBoard();
 				for (int i = 0; i < board.Count; i++) {
 					for (int j = 0; j < board[i].Count; j++) {
-						Console.Write(board[i][j] + " ");
+						string cell = " ";
+						if (board[i][j] != TicTacToe.PlayerToken.None) {
+							cell = board[i][j].ToString();
+						}
+						Console.Write(cell);
+						if (j < 2) {
+							Console.Write("|");
+						}
 					}
 					Console.WriteLine();
+					if (i < 2) {
+						Console.WriteLine("---------");
+					}
 				}
+				Console.WriteLine();
 			};
+
 
 			game.OnGameOver += (sender, e) => {
 				if (e is TicTacToe.GameOverEventArgs) {
